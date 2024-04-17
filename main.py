@@ -20,23 +20,11 @@ def MED(S, T):
     if (S[0] == T[0]):
       return (MED(S[1:], T[1:]))
     else:
-      #insert_cost = 1 + MED(S, T[1:])
-      #delete_cost = 1 + MED(S[1:], T)  # Deletion
-      #substitute_cost = 1 + MED(S[1:], T[1:])  # Substitution
-
-      # Choose the minimum cost among the three operations
-      #return min(insert_cost, delete_cost, substitute_cost)
       return (1 + min(MED(S, T[1:]), MED(S[1:], T)))
 
 
 def fast_MED(S, T, MED={}):
-  #MED = {}
-  #insertion_cost = 1
-  #deletion_cost = 1
-  #substitution_cost = 1
-
-  # Helper function to calculate the minimum edit distance
-  #def med_helper(i, j):
+  
   if (S, T) in MED:
     return MED[(S, T)]
 
@@ -50,7 +38,6 @@ def fast_MED(S, T, MED={}):
   else:
     insert_cost = fast_MED(S, T[1:], MED)
     delete_cost = fast_MED(S[1:], T, MED)
-    #substitute_cost = 1 + fast_MED(S[1:], T[1:], MED)
     result = 1 + min(insert_cost, delete_cost)
     MED[(S, T)] = result
   return result
